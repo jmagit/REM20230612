@@ -8,5 +8,7 @@ import { LoggerService } from '@my/core';
 })
 export class AppComponent {
   title = 'curso';
-  constructor(log: LoggerService) {}
+  // constructor(log: LoggerService) {
+  //   log.error('Es un error')
+  // }
 }
