@@ -3,13 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoggerService, MyCoreModule } from '@my/core';
+import { ERROR_LEVEL, LoggerService, MyCoreModule } from '@my/core';
 import { CommonComponentModule } from './common-component';
 import { CommonServicesModule } from './common-services';
 import { MainModule } from './main';
 import { SecurityModule } from './security';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     MainModule, SecurityModule
   ],
   providers: [
-    LoggerService
+    LoggerService,
+    { provide: ERROR_LEVEL, useValue: environment.ERROR_LEVEL }
   ],
   bootstrap: [AppComponent]
 })
