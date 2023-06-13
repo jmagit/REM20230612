@@ -15,4 +15,8 @@ export class DemosComponent {
   constructor(public vm: NotificationService, http: HttpClient) {
     this.listado = http.get('http://localhost:4321/api/peliculas')
    }
+
+   send() {}
+   remove() {}
+   cancel() {}
 }

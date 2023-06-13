@@ -11,8 +11,8 @@ import { HomeComponent } from '../main';
 })
 export class DashboardComponent {
   menu = [
-    { texto: 'demos', icono: 'fa-solid fa-chalkboard-user', componente: DemosComponent },
     { texto: 'inicio', icono: 'fa-solid fa-house', componente: HomeComponent},
+    { texto: 'demos', icono: 'fa-solid fa-chalkboard-user', componente: DemosComponent },
     { texto: 'gráfico', icono: 'fa-solid fa-image', componente: GraficoSvgComponent},
     { texto: 'calculadora', icono: 'fa-solid fa-calculator', componente: CalculadoraComponent},
   ]

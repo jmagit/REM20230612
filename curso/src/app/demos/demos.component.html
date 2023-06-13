@@ -7,6 +7,15 @@
 </p>
 <ul>
   <li *ngFor="let item of listado | async">
-    {{item.titulo}}
+    {{item.titulo | elipsis:10}}
   </li>
 </ul>
+<form #miForm="ngForm">
+  <input type="text" required />
+  <div class="btn-group" role="group">
+    <button class="btn btn-primary" (click)="send()" [disabled]="miForm.invalid"><i class="fas fa-check-circle"></i> Enviar</button>
+    <button class="btn btn-danger" (click)="remove()"><i class="far fa-trash-alt"> Borrar</i></button>
+    <button class="btn btn-success" (click)="cancel()"><i class="fas fa-undo-alt"></i> Volver</button>
+  </div>
+  <app-form-buttons (send)="send()" [send-text]="'Enviar'" [send-disabled]="miForm.invalid" (cancel)="cancel()" [cancel-text]="'Volver'" />
+</form>
