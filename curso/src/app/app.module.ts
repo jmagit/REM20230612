@@ -11,15 +11,20 @@ import { SecurityModule } from './security';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { CalculadoraComponent } from './calculadora/calculadora.component';
+import GraficoSvgComponent from 'src/lib/independientes/grafico-svg/grafico-svg.component';
+import { DemosComponent } from './demos/demos.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, CalculadoraComponent, DemosComponent, DashboardComponent,
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule,
     AppRoutingModule, MyCoreModule, CommonComponentModule, CommonServicesModule,
-    MainModule, SecurityModule
+    MainModule, SecurityModule,
+    GraficoSvgComponent,
   ],
   providers: [
     LoggerService,

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { LoggerService } from '@my/core';
 
@@ -12,16 +12,13 @@ export class Notification {
   public get Type() { return this.type; }
 }
 
-@Injectable({
-  providedIn: 'root'
-})
-export class NotificationService {
+@Injectable({ providedIn: 'root'})
+export class NotificationService implements OnDestroy {
   public readonly NotificationType = NotificationType;
   private listado: Array<Notification> = [];
   private notificacion$ = new Subject<Notification>();
 
   constructor(private out: LoggerService) { }
-
   public get Listado(): Array<Notification> { return Object.assign([], this.listado); }
   public get HayNotificaciones(): boolean { return this.listado.length > 0; }
   public get Notificacion() { return this.notificacion$; }
@@ -54,6 +51,10 @@ export class NotificationService {
     if (this.HayNotificaciones) {
       this.listado.splice(0);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.notificacion$.complete()
   }
 
 }
