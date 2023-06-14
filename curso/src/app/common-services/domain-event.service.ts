@@ -3,14 +3,15 @@ import { Subject, Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 export class EventData {
-  constructor(private name: string, private value?: any) {
-    this.name = name;
-    this.value = value;
-  }
+  constructor(private name: string, private value?: any) {}
   public get Name() { return this.name }
   public get Value() { return this.value }
 }
 
+/**
+ * El patrón Event Bus básicamente permite a objetos suscribirse a ciertos eventos del Bus,
+ * de modo que cuando un evento es publicado en el Bus se propaga a cualquier suscriptor interesado.
+ */
 @Injectable({
   providedIn: 'root'
 })
