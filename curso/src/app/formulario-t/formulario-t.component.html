@@ -1,0 +1,53 @@
+<div>
+  <button type="button" (click)="add()">add</button>
+  <button type="button" (click)="edit()">edit</button>
+</div>
+
+<form #miForm="ngForm">
+  <div class="mb-3">
+    <label class="form-label" for="id">Código</label>
+    <input class="form-control" type="number" name="id" id="id" [(ngModel)]="elemento.id" #id="ngModel" required >
+    <output class="error" [hidden]="!id.hasError('required') || !miForm.pristine">Es obligatorio</output>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="nombre">Nombre</label>
+    <input class="form-control" type="text" name="nombre" id="nombre" [(ngModel)]="elemento.nombre" #nombre="ngModel"
+      required minlength="2" maxlength="10" [ngModelOptions]="{ updateOn: 'blur'}" >
+    <output class="error" [hidden]="!nombre.hasError('required')">Es obligatorio</output>
+    <output class="error" [hidden]="!nombre.hasError('minlength') && !nombre.hasError('maxlength')">Debe tener entre 2 y 10 caracteres</output>
+    {{ nombre.errors | json  }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="apellidos">Apellidos</label>
+    <input class="form-control" type="text" name="apellidos" id="apellidos" [(ngModel)]="elemento.apellidos" #apellidos="ngModel" minlength="2" maxlength="10" >
+    <output class="error" [hidden]="!apellidos.hasError('minlength') && !apellidos.hasError('maxlength')">Debe tener entre 2 y 10 caracteres</output>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="correo">Correo</label>
+    <input class="form-control" type="email" name="correo" id="correo" [(ngModel)]="elemento.correo" #correo="ngModel" >
+    <output class="error" [hidden]="correo.valid">{{ correo.errors | json  }}</output>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="nif">NIF</label>
+    <input class="form-control" type="text" name="nif" id="nif" [(ngModel)]="elemento.nif" #nif="ngModel" pattern="^\d{1,8}[A-Za-z]$" nif >
+    <output class="error" [hidden]="nif.valid">{{ nif.errors | json  }}</output>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="edad">Edad</label>
+    <input class="form-control" type="number" name="edad" id="edad" [(ngModel)]="elemento.edad" #edad="ngModel" min="16" max="67" >
+    <output class="error" [hidden]="edad.valid">{{ edad.errors | json  }}</output>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="fecha">Fecha</label>
+    <input class="form-control" type="date" name="fecha" id="fecha" [(ngModel)]="elemento.fecha" #fecha="ngModel" >
+  </div>
+  <div class="mb-3 form-check">
+    <input class="form-check-control" type="checkbox" name="conflictivo" id="conflictivo" [(ngModel)]="elemento.conflictivo" #conflictivo="ngModel" >
+    <label class="form-check-label" for="conflictivo">Conflictivo</label>
+  </div>
+  <div>
+    <button type="button" (click)="send()" [disabled]="miForm.invalid">Enviar</button>
+    <button type="button" (click)="cancel()">Volver</button>
+  </div>
+</form>
+{{ elemento | json }}

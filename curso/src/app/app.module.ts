@@ -15,10 +15,11 @@ import { CalculadoraComponent } from './calculadora/calculadora.component';
 import GraficoSvgComponent from 'src/lib/independientes/grafico-svg/grafico-svg.component';
 import { DemosComponent } from './demos/demos.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FormularioTComponent } from './formulario-t/formulario-t.component';
 
 @NgModule({
   declarations: [
-    AppComponent, CalculadoraComponent, DemosComponent, DashboardComponent,
+    AppComponent, CalculadoraComponent, DemosComponent, DashboardComponent, FormularioTComponent,
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule,
