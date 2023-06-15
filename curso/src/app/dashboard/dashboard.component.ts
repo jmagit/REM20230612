@@ -4,6 +4,7 @@ import { CalculadoraComponent } from '../calculadora/calculadora.component';
 import { DemosComponent } from '../demos/demos.component';
 import { HomeComponent } from '../main';
 import { FormularioTComponent } from '../formulario-t/formulario-t.component';
+import { GeolocalizacionComponent } from '../geolocalizacion/geolocalizacion.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +13,9 @@ import { FormularioTComponent } from '../formulario-t/formulario-t.component';
 })
 export class DashboardComponent {
   menu = [
+    { texto: 'geolocalización', icono: 'fa-solid fa-earth-europe', componente: GeolocalizacionComponent },
     { texto: 'demos', icono: 'fa-solid fa-chalkboard-user', componente: DemosComponent },
-    { texto: 'formulario', icono: 'fa-solid fa-house', componente: FormularioTComponent},
+    { texto: 'formulario', icono: 'fa-solid fa-chalkboard-user', componente: FormularioTComponent},
     { texto: 'inicio', icono: 'fa-solid fa-house', componente: HomeComponent},
     { texto: 'gráfico', icono: 'fa-solid fa-image', componente: GraficoSvgComponent},
     { texto: 'calculadora', icono: 'fa-solid fa-calculator', componente: CalculadoraComponent},

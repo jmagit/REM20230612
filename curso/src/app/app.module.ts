@@ -16,10 +16,11 @@ import GraficoSvgComponent from 'src/lib/independientes/grafico-svg/grafico-svg.
 import { DemosComponent } from './demos/demos.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormularioTComponent } from './formulario-t/formulario-t.component';
+import { GeolocalizacionComponent } from './geolocalizacion/geolocalizacion.component';
 
 @NgModule({
   declarations: [
-    AppComponent, CalculadoraComponent, DemosComponent, DashboardComponent, FormularioTComponent,
+    AppComponent, CalculadoraComponent, DemosComponent, DashboardComponent, FormularioTComponent, GeolocalizacionComponent,
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule,
