@@ -17,15 +17,17 @@ import { DemosComponent } from './demos/demos.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormularioTComponent } from './formulario-t/formulario-t.component';
 import { GeolocalizacionComponent } from './geolocalizacion/geolocalizacion.component';
+import { FormularioRxComponent } from './formulario-rx/formulario-rx.component';
+import { PersonasModule } from './personas';
 
 @NgModule({
   declarations: [
-    AppComponent, CalculadoraComponent, DemosComponent, DashboardComponent, FormularioTComponent, GeolocalizacionComponent,
+    AppComponent, CalculadoraComponent, DemosComponent, DashboardComponent, FormularioTComponent, GeolocalizacionComponent, FormularioRxComponent,
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule,
     AppRoutingModule, MyCoreModule, CommonComponentModule, CommonServicesModule,
-    MainModule, SecurityModule,
+    MainModule, SecurityModule, PersonasModule,
     GraficoSvgComponent,
   ],
   providers: [

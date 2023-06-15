@@ -25,24 +25,24 @@
   <div class="mb-3">
     <label class="form-label" for="correo">Correo</label>
     <input class="form-control" type="email" name="correo" id="correo" [(ngModel)]="elemento.correo" #correo="ngModel" >
-    <output class="error" [hidden]="correo.valid">{{ correo.errors | json  }}</output>
+    <output class="error" [hidden]="correo.valid">{{ correo.errors | errormsg  }}</output>
   </div>
   <div class="mb-3">
     <label class="form-label" for="nif">NIF</label>
     <input class="form-control" type="text" name="nif" id="nif" [(ngModel)]="elemento.nif" #nif="ngModel" pattern="^\d{1,8}[A-Za-z]$" nif >
-    <output class="error" [hidden]="nif.valid">{{ nif.errors | json  }}</output>
+    <output class="error" [hidden]="nif.valid">{{ nif.errors | errormsg  }}</output>
   </div>
   <div class="mb-3">
     <label class="form-label" for="edad">Edad</label>
     <input class="form-control" type="number" name="edad" id="edad" [(ngModel)]="elemento.edad" #edad="ngModel" min="16" max="67" >
-    <output class="error" [hidden]="edad.valid">{{ edad.errors | json  }}</output>
+    <output class="error" [hidden]="edad.valid">{{ edad.errors | errormsg  }}</output>
   </div>
   <div class="mb-3">
     <label class="form-label" for="fecha">Fecha</label>
     <input class="form-control" type="date" name="fecha" id="fecha" [(ngModel)]="elemento.fecha" #fecha="ngModel" >
   </div>
   <div class="mb-3 form-check">
-    <input class="form-check-control" type="checkbox" name="conflictivo" id="conflictivo" [(ngModel)]="elemento.conflictivo" #conflictivo="ngModel" >
+    <input class="form-check-input" type="checkbox" name="conflictivo" id="conflictivo" [(ngModel)]="elemento.conflictivo" #conflictivo="ngModel" >
     <label class="form-check-label" for="conflictivo">Conflictivo</label>
   </div>
   <div>

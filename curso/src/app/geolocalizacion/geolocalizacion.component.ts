@@ -16,7 +16,7 @@ export class GeolocalizacionComponent implements OnInit, OnDestroy {
     }, error => {
       switch (error.code) {
         case error.PERMISSION_DENIED: observer.error('Permiso denegado por el usuario'); break;
-        case error.POSITION_UNAVAILABLE: observer.error('Posición no disponible'); break;
+        case error.POSITION_UNAVAILABLE: /*observer.error('Posición no disponible');*/ console.warn('Posición no disponible'); break;
         case error.TIMEOUT: observer.error('Tiempo de espera agotado'); break;
         default: observer.error(`Error desconocido de Geolocalización: ${error.code}`); break;
       }
