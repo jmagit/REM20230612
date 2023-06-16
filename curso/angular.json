@@ -9,6 +9,15 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "es",
+        "locales": {
+          "en": {
+            "translation": "src/locale/messages.en.xlf",
+            "baseHref": ""
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -31,7 +40,8 @@
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
-            ]
+            ],
+            "i18nMissingTranslation": "error"
           },
           "configurations": {
             "production": {
@@ -62,6 +72,13 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "en": {
+              "localize": ["en"],
+              "fileReplacements": [{
+                "replace": "src/locale/messages.ts",
+                "with": "src/locale/messages.en.ts"
+            }]
             }
           },
           "defaultConfiguration": "production"
@@ -74,6 +91,9 @@
             },
             "development": {
               "browserTarget": "curso:build:development"
+            },
+            "en": {
+              "browserTarget": "curso:build:development,en"
             }
           },
           "defaultConfiguration": "development"

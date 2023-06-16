@@ -20,10 +20,10 @@ import { GeolocalizacionComponent } from './geolocalizacion/geolocalizacion.comp
 import { FormularioRxComponent } from './formulario-rx/formulario-rx.component';
 import { PersonasModule } from './personas';
 
-import { registerLocaleData } from '@angular/common';
-import localeEs from '@angular/common/locales/es';
-import localeEsExtra from '@angular/common/locales/extra/es';
-registerLocaleData(localeEs, 'es', localeEsExtra);
+// import { registerLocaleData } from '@angular/common';
+// import localeEs from '@angular/common/locales/es';
+// import localeEsExtra from '@angular/common/locales/extra/es';
+// registerLocaleData(localeEs, 'es', localeEsExtra);
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ registerLocaleData(localeEs, 'es', localeEsExtra);
   providers: [
     LoggerService,
     { provide: ERROR_LEVEL, useValue: environment.ERROR_LEVEL },
-    { provide: LOCALE_ID, useValue: 'es'}
+    // { provide: LOCALE_ID, useValue: 'es'}
   ],
   bootstrap: [AppComponent]
 })

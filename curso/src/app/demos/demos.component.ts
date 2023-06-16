@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { NotificationService, NotificationType } from '../common-services';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subscriber, Subscription } from 'rxjs';
+import { messages } from 'src/locale/messages';
 
 @Component({
   selector: 'app-demos',
@@ -31,7 +32,7 @@ export class DemosComponent implements OnDestroy {
       this.suscriptor.unsubscribe()
   }
 
-   send() {}
+   send() {this.vm.add(messages.AppComponent.title, NotificationType.warn)}
    remove(id: number) { this.vm.add(`Borrado ${id}`, NotificationType.warn)}
    cancel() {}
 
