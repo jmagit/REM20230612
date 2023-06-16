@@ -15,12 +15,12 @@ import { FormularioComponent } from '../personas';
 })
 export class DashboardComponent {
   menu = [
-    { texto: 'personas', icono: 'fa-solid fa-chalkboard-user', componente: FormularioComponent},
-    { texto: 'geolocalización', icono: 'fa-solid fa-earth-europe', componente: GeolocalizacionComponent },
-    { texto: 'demos', icono: 'fa-solid fa-chalkboard-user', componente: DemosComponent },
     { texto: 'formulario T', icono: 'fa-solid fa-chalkboard-user', componente: FormularioTComponent},
     { texto: 'formulario Rx', icono: 'fa-solid fa-chalkboard-user', componente: FormularioRxComponent},
+    { texto: 'personas', icono: 'fa-solid fa-chalkboard-user', componente: FormularioComponent},
     { texto: 'inicio', icono: 'fa-solid fa-house', componente: HomeComponent},
+    { texto: 'demos', icono: 'fa-solid fa-chalkboard-user', componente: DemosComponent },
+    { texto: 'geolocalización', icono: 'fa-solid fa-earth-europe', componente: GeolocalizacionComponent },
     { texto: 'gráfico', icono: 'fa-solid fa-image', componente: GraficoSvgComponent},
     { texto: 'calculadora', icono: 'fa-solid fa-calculator', componente: CalculadoraComponent},
   ]

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +20,11 @@ import { GeolocalizacionComponent } from './geolocalizacion/geolocalizacion.comp
 import { FormularioRxComponent } from './formulario-rx/formulario-rx.component';
 import { PersonasModule } from './personas';
 
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import localeEsExtra from '@angular/common/locales/extra/es';
+registerLocaleData(localeEs, 'es', localeEsExtra);
+
 @NgModule({
   declarations: [
     AppComponent, CalculadoraComponent, DemosComponent, DashboardComponent, FormularioTComponent, GeolocalizacionComponent, FormularioRxComponent,
@@ -32,7 +37,8 @@ import { PersonasModule } from './personas';
   ],
   providers: [
     LoggerService,
-    { provide: ERROR_LEVEL, useValue: environment.ERROR_LEVEL }
+    { provide: ERROR_LEVEL, useValue: environment.ERROR_LEVEL },
+    { provide: LOCALE_ID, useValue: 'es'}
   ],
   bootstrap: [AppComponent]
 })

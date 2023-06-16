@@ -11,3 +11,10 @@
 .ng-pristine {
   border-color: blue;
 }
+.pressed {
+  border-color: red;
+}
+
+button:focus {
+  border: 3px yellow;
+}

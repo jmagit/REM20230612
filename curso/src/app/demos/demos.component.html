@@ -1,7 +1,17 @@
 <app-notification />
+<my-sizer [(size)]="fontSize" /> {{fontSize}}
+
 <calculadora [init]="valor" />
 <input type="number" [(ngModel)]="valor" >
-
+<div>Idioma: <select [(ngModel)]="idioma">
+  <option *ngFor="let i of idiomas" [value]="i.codigo">{{i.region}}</option>
+</select>
+<p>
+{{valor}}
+{{valor | number:'1.2-4'}}
+{{valor | number:'1.2-4':idioma}}
+{{valor | currency:'EUR':'symbol':'1.2-2'}}
+</p>
 <p>
   <input type="button" value="Error" (click)="vm.add('Esto es una notificación de error')" >
   <input type="button" value="Warn" (click)="vm.add('Esta notificación es un aviso', vm.NotificationType.warn)" >
@@ -12,7 +22,7 @@
   <input type="text" required />
   <div class="btn-group" role="group">
     <button class="btn btn-primary" (click)="send()" [disabled]="miForm.invalid"><i class="fas fa-check-circle"></i> Enviar</button>
-    <button class="btn btn-danger" (click)="remove()"><i class="far fa-trash-alt"> Borrar</i></button>
+    <button class="btn btn-danger" (click)="remove(1)"><i class="far fa-trash-alt"> Borrar</i></button>
     <button class="btn btn-success" (click)="cancel()"><i class="fas fa-undo-alt"></i> Volver</button>
   </div>
 </form>

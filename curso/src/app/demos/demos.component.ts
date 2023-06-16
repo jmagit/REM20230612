@@ -11,8 +11,9 @@ import { Observable, Subscriber, Subscription } from 'rxjs';
 })
 export class DemosComponent implements OnDestroy {
   listado: Observable<any>;
-  valor = 666
+  valor = 1666.43
   suscriptor: Subscription
+  fontSize = 24;
 
   constructor(public vm: NotificationService, http: HttpClient) {
     this.listado = http.get('http://localhost:4321/api/peliculas')
@@ -31,6 +32,13 @@ export class DemosComponent implements OnDestroy {
   }
 
    send() {}
-   remove() {}
+   remove(id: number) { this.vm.add(`Borrado ${id}`, NotificationType.warn)}
    cancel() {}
+
+   idiomas = [
+    { codigo: 'en-US', region: 'USA' },
+    { codigo: 'es', region: 'España' },
+    { codigo: 'pt', region: 'Portugal' },
+  ];
+  idioma = this.idiomas[0].codigo;
 }

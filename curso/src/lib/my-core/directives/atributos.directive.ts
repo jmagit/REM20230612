@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/directive-selector */
-import { Directive, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnChanges, Output, Renderer2, SimpleChanges } from '@angular/core';
 import { ErrorMessagePipe } from '../pipes/cadenas.pipe';
 
 @Directive({ selector: `[myWinConfirm]` })
@@ -22,7 +22,9 @@ export class WindowConfirmDirective {
 @Directive({ selector: '[show]' })
 export class ShowDirective {
   @HostBinding() hidden: boolean = false;
-  @Input() set show(value: boolean) { this.hidden = !value; }
+  @Input() set show(value: boolean) {
+    this.hidden = !value;
+  }
 }
 
 @Directive({ selector: '[focused]' })
@@ -50,5 +52,12 @@ export class ShowErrorsDirective implements OnChanges {
   }
 }
 
+@Directive({ selector: '[myShadow]' })
+export class ShadowDirective {
+  constructor(el: ElementRef, renderer: Renderer2) {
+    //el.nativeElement.style.boxShadow = '10px 10px 5px #888888';
+    renderer.setStyle(el.nativeElement, 'box-shadow', '10px 10px 5px #888888');
+  }
+}
 
-export const DIRECTIVAS_ATRIBUTO = [WindowConfirmDirective, ShowDirective, ShowErrorsDirective, FocusedDirective, ]
+export const DIRECTIVAS_ATRIBUTO = [WindowConfirmDirective, ShowDirective, ShowErrorsDirective, FocusedDirective, ShadowDirective, ]
