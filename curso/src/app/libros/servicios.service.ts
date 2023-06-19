@@ -12,7 +12,7 @@ import { AuthService, AUTH_REQUIRED } from '../security';
 })
 export class LibrosDAOService extends RESTDAOService<any, any> {
   constructor() {
-    super('libros', { context: new HttpContext().set(AUTH_REQUIRED, true) });
+    super('libros', { context: new HttpContext().set(AUTH_REQUIRED, true), withCredentials: true });
   }
   page(page: number, rows: number = 20): Observable<{ page: number, pages: number, rows: number, list: Array<any> }> {
     return new Observable(subscriber => {
