@@ -5,7 +5,7 @@
   "projects": {
     "curso": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": { },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -77,11 +77,11 @@
               "namedChunks": true
             },
             "en": {
-              "localize": ["en"],
-              "fileReplacements": [{
-                "replace": "src/locale/messages.ts",
-                "with": "src/locale/messages.en.ts"
-            }]
+              "localize": [ "en" ],
+              "fileReplacements": [ {
+                  "replace": "src/locale/messages.ts",
+                  "with": "src/locale/messages.en.ts"
+                } ]
             }
           },
           "defaultConfiguration": "production"
@@ -99,7 +99,10 @@
               "browserTarget": "curso:build:development,en"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -122,7 +125,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [ ]
           }
         }
       }
