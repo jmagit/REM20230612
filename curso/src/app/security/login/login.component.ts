@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { LoginService } from '../security.service';
+import { LOGIN_FORM_CLOSE_EVENT, LOGIN_FORM_OPEN_EVENT, LoginService } from '../security.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventBusService, NotificationService } from 'src/app/common-services';
 
@@ -55,10 +55,10 @@ export class LoginComponent extends BaseComponent {
   constructor(loginSrv: LoginService, notify: NotificationService, route: ActivatedRoute,
     router: Router, eventBus: EventBusService) {
     super(loginSrv, notify, route, router, eventBus)
-    this.login$ = this.eventBus.on('open login form', () => {
+    this.login$ = this.eventBus.on(LOGIN_FORM_OPEN_EVENT, () => {
       this.visible = false
     })
-    this.logout$ = this.eventBus.on('close login form', () => {
+    this.logout$ = this.eventBus.on(LOGIN_FORM_CLOSE_EVENT, () => {
       this.visible = true
     })
   }
@@ -76,10 +76,10 @@ export class LoginFormComponent extends BaseComponent implements OnInit, OnDestr
     super(loginSrv, notify, route, router, eventBus)
   }
   ngOnInit(): void {
-    this.eventBus.emit('open login form');
+    this.eventBus.emit(LOGIN_FORM_OPEN_EVENT);
   }
   ngOnDestroy(): void {
-    this.eventBus.emit('close login form');
+    this.eventBus.emit(LOGIN_FORM_CLOSE_EVENT);
   }
 
   protected override notificaError(error: string) {

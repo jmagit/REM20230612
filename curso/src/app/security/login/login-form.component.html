@@ -6,14 +6,14 @@
       <div class="card-text">
         <label for="username" class="form-label">Usuario</label>
         <input type="text" class="form-control" id="username" name="username" [(ngModel)]="txtUsuario" required
-          #username="ngModel" placeholder="Usuario" />
+          #username="ngModel" placeholder="Usuario" autocomplete="username" />
         <div class="invalid-feedback" role="alert" *ngIf="username.errors && miForm.submitted">Es obligatorio</div>
       </div>
       <div class="card-text">
         <label for="password" class="form-label">Contraseña</label>
         <input type="password" class="form-control" id="password" name="password" [(ngModel)]="txtPassword"
           #password="ngModel" required minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$"
-          placeholder="Contraseña" />
+          placeholder="Contraseña" autocomplete="current-password" />
         <div class="invalid-feedback" role="alert" *ngIf="password.errors && miForm.submitted">
           <div [hidden]="!password.hasError('required')">Es obligatorio</div>
           <div [hidden]="!password.errors['minlength']">Debe al menos 8 caracteres</div>

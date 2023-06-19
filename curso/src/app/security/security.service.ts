@@ -1,11 +1,15 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild, UrlTree, CanLoad, Route, UrlSegment, Data } from '@angular/router';
+import { Injectable, inject } from '@angular/core';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild, UrlTree, CanLoad, Route, UrlSegment, Data, CanActivateFn, CanActivateChildFn, CanLoadFn, CanMatchFn } from '@angular/router';
 import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpContextToken } from '@angular/common/http';
 import { BehaviorSubject, catchError, filter, Observable, of, pipe, switchMap, take, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { EventBusService } from '../common-services';
 
 export const AUTH_REQUIRED = new HttpContextToken<boolean>(() => false);
+export const LOGIN_EVENT = 'login'
+export const LOGIN_FORM_OPEN_EVENT = 'login.form.open'
+export const LOGIN_FORM_CLOSE_EVENT = 'login.form.close'
+export const LOGOUT_EVENT = 'logout'
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -43,7 +47,7 @@ export class AuthService {
     if (this.storage) {
       this.storage['AuthService'] = JSON.stringify({ isAuth: this.isAuth, authToken, refresh, name, roles });
     }
-    this.eventBus.emit('login')
+    this.eventBus.emit(LOGIN_EVENT)
   }
   isInRoles(...rolesArgs: Array<string>) {
     if (this.isAutenticated && this.roles.length > 0 && rolesArgs.length > 0)
@@ -60,7 +64,7 @@ export class AuthService {
     if (this.storage) {
       this.storage.removeItem('AuthService');
     }
-    this.eventBus.emit('logout')
+    this.eventBus.emit(LOGOUT_EVENT)
   }
 }
 
@@ -81,7 +85,7 @@ export class LoginService {
   get Roles() { return this.auth.Roles; }
 
   login(usr: string, pwd: string) {
-    if(this.auth.isAutenticated) this.auth.logout();
+    if (this.auth.isAutenticated) this.auth.logout();
     return new Observable(observable =>
       this.http.post<LoginResponse>(environment.securityApiURL + 'login', { username: usr, password: pwd })
         .subscribe({
@@ -169,7 +173,7 @@ export class AuthInterceptor implements HttpInterceptor {
     );
   }
 }
-
+/*
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) { }
@@ -179,7 +183,21 @@ export class AuthGuard implements CanActivate {
     return this.authService.isAutenticated;
   }
 }
+*/
+export const AuthCanActivateFn: CanActivateFn = (_route, _state) => {
+  return inject(AuthService).isAutenticated;
+}
 
+export function AuthWithRedirectCanActivate(redirectTo: string): CanActivateFn {
+  return (_route, state) => {
+    const authService = inject(AuthService)
+    if (!authService.isAutenticated && redirectTo)
+      inject(Router).navigate([redirectTo], { queryParams: { returnUrl: state.url } });
+    return authService.isAutenticated;
+  }
+}
+
+/*
 @Injectable({ providedIn: 'root' })
 export class InRoleGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor(private authService: AuthService, private router: Router) { }
@@ -193,6 +211,17 @@ export class InRoleGuard implements CanActivate, CanActivateChild, CanLoad {
     return route.data && route.data['roles'] ? this.authService.isInRoles(...route.data['roles']) : false;
   }
 }
+*/
+export const InRoleCanActivateFn: CanActivateFn = (route, state) => {
+  return route.data['roles'] ? inject(AuthService).isInRoles(...route.data['roles']) : false;
+}
+export const InRoleCanActivateChildFn: CanActivateChildFn = (childRoute, state) => {
+  return childRoute.data['roles'] ? inject(AuthService).isInRoles(...childRoute.data['roles']) : false;
+}
+export const InRoleCanLoadFn: CanMatchFn = (route: Route, _segments) => {
+  return route.data && route.data['roles'] ? inject(AuthService).isInRoles(...route.data['roles']) : false;
+}
+
 
 export class Role {
   role: string = '';

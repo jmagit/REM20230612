@@ -11,7 +11,7 @@
       <div class="form-group">
         <label for="nombre">Nombre: </label>
         <input id="nombre" class="form-control" [class.is-invalid]="miForm.get('nombre')?.invalid" type="text"
-          formControlName="nombre">
+          formControlName="nombre" autocomplete="username">
         <span class="invalid-feedback">{{getErrorMessage('nombre')}}</span>
       </div>
       <fieldset formGroupName="password">
@@ -19,13 +19,13 @@
           <label for="passwordValue">Contraseña: </label>
           <input id="passwordValue" class="form-control"
             [class.is-invalid]="miForm.get('password.passwordValue')?.invalid" type="password"
-            formControlName="passwordValue">
+            formControlName="passwordValue" autocomplete="new-password">
           <span class="invalid-feedback">{{getErrorMessage('password.passwordValue')}}</span>
         </div>
         <div class="form-group">
           <label for="passwordConfirm">Confirme la contraseña: </label>
           <input id="passwordConfirm" class="form-control" [class.is-invalid]="miForm.get('password')?.invalid"
-            type="password" formControlName="passwordConfirm">
+            type="password" formControlName="passwordConfirm" autocomplete="new-password">
           <span class="invalid-feedback">No coincide la confirmación</span>
         </div>
 
