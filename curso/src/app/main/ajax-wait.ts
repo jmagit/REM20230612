@@ -34,7 +34,8 @@ export class AjaxWaitInterceptor implements HttpInterceptor {
   template: `
   <div [hidden]="Oculto">
     <div class="ajax-wait"></div>
-    <img src="assets/loading.gif">
+    <!-- <img src="assets/loading.gif"> -->
+    <div class="loader"></div>
   </div>`,
   styles: [`
     .ajax-wait {
@@ -42,8 +43,8 @@ export class AjaxWaitInterceptor implements HttpInterceptor {
       background-color: black;
       left: 0;
       top: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       opacity: 0.3;
       z-index:100;
     }
@@ -56,6 +57,24 @@ export class AjaxWaitInterceptor implements HttpInterceptor {
       opacity: 1;
       z-index:101;
     }
+    .loader {
+        border: 16px dotted #1a93fd;
+        /*border-top: 16px solid #abdeff;*/
+        border-radius: 50%;
+        animation: spin 5s linear infinite;
+        position: fixed;
+        left: 45%;
+        top: 45%;
+        width: 80px;
+        height: 80px;
+        z-index:101;
+        opacity: 1;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
   `],
 })
 export class AjaxWaitComponent implements DoCheck {
