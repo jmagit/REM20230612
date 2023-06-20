@@ -212,11 +212,26 @@ export class InRoleGuard implements CanActivate, CanActivateChild, CanLoad {
   }
 }
 */
+export function InRoleCanActivate(...rolesArgs: Array<string>): CanActivateFn {
+  return (_route, _state) => {
+    return rolesArgs.length ? inject(AuthService).isInRoles(...rolesArgs) : false;
+  }
+}
 export const InRoleCanActivateFn: CanActivateFn = (route, state) => {
   return route.data['roles'] ? inject(AuthService).isInRoles(...route.data['roles']) : false;
 }
+export function InRoleCanActivateChild(...rolesArgs: Array<string>): CanActivateChildFn {
+  return (_childRoute, _state) => {
+    return rolesArgs.length ? inject(AuthService).isInRoles(...rolesArgs) : false;
+  }
+}
 export const InRoleCanActivateChildFn: CanActivateChildFn = (childRoute, state) => {
   return childRoute.data['roles'] ? inject(AuthService).isInRoles(...childRoute.data['roles']) : false;
+}
+export function InRoleCanLoad(...rolesArgs: Array<string>): CanMatchFn {
+  return (_route, _segments) => {
+    return rolesArgs.length ? inject(AuthService).isInRoles(...rolesArgs) : false;
+  }
 }
 export const InRoleCanLoadFn: CanMatchFn = (route: Route, _segments) => {
   return route.data && route.data['roles'] ? inject(AuthService).isInRoles(...route.data['roles']) : false;
