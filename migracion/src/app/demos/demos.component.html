@@ -1,0 +1,36 @@
+<app-notification />
+<my-sizer [(size)]="fontSize" /> {{fontSize}}
+<calculadora [init]="valor" />
+<input type="number" [(ngModel)]="valor" >
+<div>Idioma: <select [(ngModel)]="idioma">
+  <option *ngFor="let i of idiomas" [value]="i.codigo">{{i.region}}</option>
+</select>
+<p>
+{{valor}}
+{{valor | number:'1.2-4'}}
+{{valor | number:'1.2-4':idioma}}
+{{valor | currency:'EUR':'symbol':'1.2-2'}}
+</p>
+<p>
+  <input type="button" value="Error" (click)="vm.add('Esto es una notificación de error')" >
+  <input type="button" value="Warn" (click)="vm.add('Esta notificación es un aviso', vm.NotificationType.warn)" >
+  <input type="button" value="Info" (click)="vm.add('Solo una notificación informativa', vm.NotificationType.info)" >
+  <input type="button" value="Log" (click)="vm.add('Para trazar con notificaciones', vm.NotificationType.log)" >
+</p>
+<form #miForm="ngForm">
+  <input type="text" required />
+  <div class="btn-group" role="group">
+    <button class="btn btn-primary" (click)="send()" [disabled]="miForm.invalid"><i class="fas fa-check-circle"></i> Enviar</button>
+    <button class="btn btn-danger" (click)="remove(1)"><i class="far fa-trash-alt"> Borrar</i></button>
+    <button class="btn btn-success" (click)="cancel()"><i class="fas fa-undo-alt"></i> Volver</button>
+  </div>
+</form>
+<app-card title="El titulo">
+  <app-form-buttons (send)="send()" [send-text]="'Enviar'" [send-disabled]="miForm.invalid" (cancel)="cancel()" [cancel-text]="'Volver'" />
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit blanditiis quidem magni aliquam facilis consectetur recusandae enim. Commodi nemo, iste sint officia velit architecto est doloremque ipsa. Aut, nesciunt quod.
+</app-card>
+<!-- <ul>
+  <li *ngFor="let item of listado | async">
+    {{item.titulo | elipsis:10}}
+  </li>
+</ul> -->

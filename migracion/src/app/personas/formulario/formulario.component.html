@@ -1,0 +1,51 @@
+<div>
+  <button type="button" (click)="add()">add</button>
+  <button type="button" (click)="edit()">edit</button>
+</div>
+
+<form [formGroup]="miForm">
+  <div class="mb-3">
+    <label class="form-label" for="id">Código</label>
+    <input class="form-control" type="number" name="id" id="id" formControlName="id" >
+    <output class="error" [hidden]="miForm.get('id')?.valid">{{ miForm.get('id')?.errors | errormsg  }}</output>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="nombre">Nombre</label>
+    <input class="form-control" type="text" name="nombre" id="nombre" formControlName="nombre" >
+    <output class="error" [hidden]="miForm.get('nombre')?.valid">{{ miForm.get('nombre')?.errors | errormsg  }}</output>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="apellidos">Apellidos</label>
+    <input class="form-control" type="text" name="apellidos" id="apellidos" formControlName="apellidos" >
+    <output class="error" [hidden]="miForm.get('apellidos')?.valid">{{ miForm.get('apellidos')?.errors | errormsg  }}</output>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="correo">Correo</label>
+    <input class="form-control" type="email" name="correo" id="correo" formControlName="correo" >
+    <output class="error" [hidden]="miForm.get('correo')?.valid">{{ miForm.get('correo')?.errors | errormsg  }}</output>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="nif">NIF</label>
+    <input class="form-control" type="text" name="nif" id="nif" formControlName="nif" >
+    <output class="error" [hidden]="miForm.get('nif')?.valid">{{ miForm.get('nif')?.errors | errormsg  }}</output>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="edad">Edad</label>
+    <input class="form-control" type="number" name="edad" id="edad" formControlName="edad" >
+    <output class="error" [hidden]="miForm.get('edad')?.valid">{{ miForm.get('edad')?.errors | errormsg  }}</output>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="fecha">Fecha</label>
+    <input class="form-control" type="date" name="fecha" id="fecha" formControlName="fecha" >
+  </div>
+  <div class="mb-3 form-check">
+    <input class="form-check-input" type="checkbox" name="conflictivo" id="conflictivo" formControlName="conflictivo" >
+    <label class="form-check-label" for="conflictivo">Conflictivo</label>
+  </div>
+  <div>
+    <button type="button" (click)="send()" [disabled]="miForm.invalid">Enviar</button>
+    <button type="button" (click)="cancel()">Volver</button>
+  </div>
+</form>
+<p>{{ miForm.value | json }}</p>
+<p>{{elemento | json}}</p>

@@ -1,0 +1,20 @@
+.error {
+  color: red;
+}
+
+.ng-invalid {
+  border-color: red;
+}
+.ng-valid {
+  border-color: green;
+}
+.ng-pristine {
+  border-color: blue;
+}
+.pressed {
+  border-color: red;
+}
+
+button:focus {
+  border: 3px yellow;
+}
