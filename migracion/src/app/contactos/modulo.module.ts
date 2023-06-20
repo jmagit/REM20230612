@@ -2,11 +2,11 @@ import { NgModule, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ResolveFn, Router, RouterModule, Routes } from '@angular/router';
-import { MyCoreModule } from '@my/core';
-import { CommonServicesModule } from '../common-services';
+
+
 import { ContactosComponent, CONTACTOS_COMPONENTES, ContactosAddComponent, ContactosEditComponent, ContactosListComponent, ContactosViewComponent } from './componente.component';
 import { PaginatorModule } from 'primeng/paginator';
-import { CommonComponentModule } from '../common-component';
+
 import { ContactosDAOService } from './servicios.service';
 import { EMPTY, catchError, map, } from 'rxjs';
 
@@ -27,17 +27,14 @@ export const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [
-    CONTACTOS_COMPONENTES,
-  ],
-  exports: [
-    CONTACTOS_COMPONENTES,
-    RouterModule,
-  ],
-  imports: [
+    exports: [
+        CONTACTOS_COMPONENTES,
+        RouterModule,
+    ],
+    imports: [
     CommonModule, FormsModule, RouterModule.forChild(routes),
-    MyCoreModule, CommonServicesModule,
-    PaginatorModule, CommonComponentModule, MyCoreModule,
-  ]
+    PaginatorModule,
+    CONTACTOS_COMPONENTES,
+]
 })
 export class ContactosModule { }

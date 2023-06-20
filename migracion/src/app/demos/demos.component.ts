@@ -3,12 +3,22 @@ import { NotificationService, NotificationType } from '../common-services';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subscriber, Subscription } from 'rxjs';
 import { messages } from 'src/locale/messages';
+import { FormButtonsComponent } from '../common-component/form-buttons/form-buttons.component';
+import { CardComponent } from '../common-component/card.component';
+import { NgFor, DecimalPipe, CurrencyPipe } from '@angular/common';
+import { TypeValidatorDirective } from '../../lib/my-core/directives/validadores/mis-validaciones.directive';
+import { FormsModule } from '@angular/forms';
+import { CalculadoraComponent } from '../calculadora/calculadora.component';
+import { SizerComponent } from '../../lib/my-core/components/my-sizer.component';
+import { NotificationComponent } from '../main/notification/notification.component';
 
 @Component({
-  selector: 'app-demos',
-  templateUrl: './demos.component.html',
-  styleUrls: ['./demos.component.css'],
-  providers: [ NotificationService ]
+    selector: 'app-demos',
+    templateUrl: './demos.component.html',
+    styleUrls: ['./demos.component.css'],
+    providers: [NotificationService],
+    standalone: true,
+    imports: [NotificationComponent, SizerComponent, CalculadoraComponent, FormsModule, TypeValidatorDirective, NgFor, CardComponent, FormButtonsComponent, DecimalPipe, CurrencyPipe]
 })
 export class DemosComponent implements OnDestroy {
   listado: Observable<any>;

@@ -8,8 +8,8 @@ describe('FormularioTComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FormularioTComponent]
-    });
+    imports: [FormularioTComponent]
+});
     fixture = TestBed.createComponent(FormularioTComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -2,7 +2,10 @@
 import { Directive, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnChanges, Output, Renderer2, SimpleChanges } from '@angular/core';
 import { ErrorMessagePipe } from '../pipes/cadenas.pipe';
 
-@Directive({ selector: `[myWinConfirm]` })
+@Directive({
+    selector: `[myWinConfirm]`,
+    standalone: true
+})
 export class WindowConfirmDirective {
   @Output('myWinConfirm') winConfirm: EventEmitter<any> = new EventEmitter();
   // eslint-disable-next-line @angular-eslint/no-input-rename
@@ -19,7 +22,10 @@ export class WindowConfirmDirective {
   @HostListener('mouseup') hasReleased() { this.isPressed = false; }
 }
 
-@Directive({ selector: '[show]' })
+@Directive({
+    selector: '[show]',
+    standalone: true
+})
 export class ShowDirective {
   @HostBinding() hidden: boolean = false;
   @Input() set show(value: boolean) {
@@ -27,14 +33,20 @@ export class ShowDirective {
   }
 }
 
-@Directive({ selector: '[focused]' })
+@Directive({
+    selector: '[focused]',
+    standalone: true
+})
 export class FocusedDirective {
   @Input() set focused(value: boolean) { if(value) this.el.nativeElement.focus(); }
   constructor(private el: ElementRef) {
  }
 }
 
-@Directive({ selector: '[myShowErrors]' })
+@Directive({
+    selector: '[myShowErrors]',
+    standalone: true
+})
 export class ShowErrorsDirective implements OnChanges {
   private pipe = new ErrorMessagePipe();
 
@@ -52,7 +64,10 @@ export class ShowErrorsDirective implements OnChanges {
   }
 }
 
-@Directive({ selector: '[myShadow]' })
+@Directive({
+    selector: '[myShadow]',
+    standalone: true
+})
 export class ShadowDirective {
   constructor(el: ElementRef, renderer: Renderer2) {
     //el.nativeElement.style.boxShadow = '10px 10px 5px #888888';

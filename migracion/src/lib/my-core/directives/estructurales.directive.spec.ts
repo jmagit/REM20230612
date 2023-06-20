@@ -12,7 +12,10 @@ class UnlessDirectiveHostComponent {
 }
 
 // eslint-disable-next-line @angular-eslint/component-selector
-@Component({ selector: 'test-cmp', template: '' })
+@Component({
+    selector: 'test-cmp', template: '',
+    standalone: true
+})
 class TestComponent {
   booleanCondition = true;
   nestedBooleanCondition = true;
@@ -39,8 +42,8 @@ describe('UnlessDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent, UnlessDirective],
-    });
+    imports: [TestComponent, UnlessDirective],
+});
   });
 
   it('attribute: true', waitForAsync(() => {

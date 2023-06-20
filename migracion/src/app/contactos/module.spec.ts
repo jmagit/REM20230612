@@ -278,11 +278,10 @@ describe('Modulo Contactos', () => {
 
         beforeEach(async () => {
           await TestBed.configureTestingModule({
-            declarations: [componente],
-            providers: [NotificationService, LoggerService],
-            imports: [HttpClientTestingModule, RouterTestingModule, FormsModule],
-            schemas: [NO_ERRORS_SCHEMA]
-          })
+    providers: [NotificationService, LoggerService],
+    imports: [HttpClientTestingModule, RouterTestingModule, FormsModule, componente],
+    schemas: [NO_ERRORS_SCHEMA]
+})
             .compileComponents();
         });
 

@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { MyCoreModule } from '@my/core';
-import { CommonServicesModule } from '../common-services';
+
+
 import { LIBROS_COMPONENTES, LibrosAddComponent, LibrosEditComponent, LibrosListComponent, LibrosViewComponent } from './componente.component';
 import {PaginatorModule} from 'primeng/paginator';
-import { CommonComponentModule } from '../common-component';
+
 
 export const routes: Routes = [
     { path: '', component: LibrosListComponent },
@@ -17,16 +17,13 @@ export const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [
-    LIBROS_COMPONENTES,
-  ],
-  exports: [
-    LIBROS_COMPONENTES,
-  ],
-  imports: [
+    exports: [
+        LIBROS_COMPONENTES,
+    ],
+    imports: [
     CommonModule, FormsModule, RouterModule.forChild(routes),
-    MyCoreModule, CommonServicesModule,
-    PaginatorModule, CommonComponentModule, MyCoreModule,
-  ]
+    PaginatorModule,
+    LIBROS_COMPONENTES,
+]
 })
 export default class LibrosModule { }

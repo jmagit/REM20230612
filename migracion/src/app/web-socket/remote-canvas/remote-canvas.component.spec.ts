@@ -8,8 +8,8 @@ describe('RemoteCanvasComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RemoteCanvasComponent ]
-    })
+    imports: [RemoteCanvasComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(RemoteCanvasComponent);

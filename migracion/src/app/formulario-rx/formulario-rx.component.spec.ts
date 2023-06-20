@@ -8,8 +8,8 @@ describe('FormularioRxComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FormularioRxComponent]
-    });
+    imports: [FormularioRxComponent]
+});
     fixture = TestBed.createComponent(FormularioRxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

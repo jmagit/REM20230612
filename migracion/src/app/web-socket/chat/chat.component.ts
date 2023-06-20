@@ -4,6 +4,8 @@ import { ContactosDAOService } from '../../contactos/servicios.service';
 import { CapitalizePipe } from '@my/core';
 import { Subject, Subscription } from 'rxjs';
 import { WebSocketService } from '../web-socket.services';
+import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf, DatePipe } from '@angular/common';
 
 interface Usuario {
   userId: number
@@ -27,7 +29,10 @@ export class ChatWebSocketService extends WebSocketService {
 }
 
 // eslint-disable-next-line @angular-eslint/directive-selector
-@Directive({ selector: '[scrollIntoView]' })
+@Directive({
+    selector: '[scrollIntoView]',
+    standalone: true
+})
 export class ScrollIntoViewDirective {
   @Input() set scrollIntoView(value: boolean) {
     if(value)
@@ -37,9 +42,11 @@ export class ScrollIntoViewDirective {
 }
 
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+    selector: 'app-chat',
+    templateUrl: './chat.component.html',
+    styleUrls: ['./chat.component.css'],
+    standalone: true,
+    imports: [NgFor, NgIf, ScrollIntoViewDirective, FormsModule, DatePipe]
 })
 export class ChatComponent implements OnInit, OnDestroy {
   readonly palabras = "En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.".split(" ")

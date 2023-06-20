@@ -16,8 +16,9 @@ export function NIFValidator(): ValidatorFn {
   };
 }
 @Directive({
-  selector: '[nif][formControlName],[nif][formControl],[nif][ngModel]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: NIFValidatorDirective, multi: true }]
+    selector: '[nif][formControlName],[nif][formControl],[nif][ngModel]',
+    providers: [{ provide: NG_VALIDATORS, useExisting: NIFValidatorDirective, multi: true }],
+    standalone: true
 })
 export class NIFValidatorDirective implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
@@ -32,8 +33,9 @@ export function UppercaseValidator(): ValidatorFn {
   };
 }
 @Directive({
-  selector: '[uppercase][formControlName],[uppercase][formControl],[uppercase][ngModel]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: UppercaseValidatorDirective, multi: true }]
+    selector: '[uppercase][formControlName],[uppercase][formControl],[uppercase][ngModel]',
+    providers: [{ provide: NG_VALIDATORS, useExisting: UppercaseValidatorDirective, multi: true }],
+    standalone: true
 })
 export class UppercaseValidatorDirective implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
@@ -46,8 +48,9 @@ export function LowercaseValidator(control: AbstractControl): { [key: string]: a
     return control.value === control.value.toLowerCase() ? null : { lowercase: 'Debe estar en mayúsculas' }
 }
 @Directive({
-  selector: '[lowercase][formControlName],[lowercase][formControl],[lowercase][ngModel]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: LowercaseValidatorDirective, multi: true }]
+    selector: '[lowercase][formControlName],[lowercase][formControl],[lowercase][ngModel]',
+    providers: [{ provide: NG_VALIDATORS, useExisting: LowercaseValidatorDirective, multi: true }],
+    standalone: true
 })
 export class LowercaseValidatorDirective implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
@@ -56,10 +59,11 @@ export class LowercaseValidatorDirective implements Validator {
 }
 
 @Directive({
-  selector: '[type][formControlName],[type][formControl],[type][ngModel]',
-  providers: [
-    { provide: NG_VALIDATORS, useExisting: TypeValidatorDirective, multi: true }
-  ]
+    selector: '[type][formControlName],[type][formControl],[type][ngModel]',
+    providers: [
+        { provide: NG_VALIDATORS, useExisting: TypeValidatorDirective, multi: true }
+    ],
+    standalone: true
 })
 export class TypeValidatorDirective implements Validator {
   constructor(private elem: ElementRef) { }
@@ -87,8 +91,9 @@ export function EqualsValidator(options: Array<string>): ValidatorFn {
   };
 }
 @Directive({
-  selector: '[equalsTo]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: forwardRef(() => EqualsValidatorDirective), multi: true }]
+    selector: '[equalsTo]',
+    providers: [{ provide: NG_VALIDATORS, useExisting: forwardRef(() => EqualsValidatorDirective), multi: true }],
+    standalone: true
 })
 export class EqualsValidatorDirective implements Validator {
   constructor(@Attribute('equalsTo') public options: string) { }

@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, WritableSignal, computed, effect, signal } from '@angular/core';
 
 @Component({
-  selector: 'my-sizer',
-  template: `
+    selector: 'my-sizer',
+    template: `
   <div>
     <button (click)="dec()">-</button><button (click)="inc()">+</button>
     <label [style.font-size.px]="count">FontSize: {{count()}}px {{factor()}}pt</label>
   </div>`,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class SizerComponent implements OnChanges, DoCheck {
   @Input()  size: number | string = 12;

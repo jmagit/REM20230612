@@ -1,7 +1,10 @@
 /* eslint-disable @angular-eslint/directive-selector */
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
-@Directive({ selector: '[myUnless]' })
+@Directive({
+    selector: '[myUnless]',
+    standalone: true
+})
 export class UnlessDirective {
   private hasView = false;
 

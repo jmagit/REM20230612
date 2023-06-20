@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, ElementRef, HostListener, Injectable, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { WebSocketService } from '../web-socket.services';
+import { JsonPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +21,11 @@ interface Message {
 }
 
 @Component({
-  selector: 'app-remote-canvas',
-  templateUrl: './remote-canvas.component.html',
-  styleUrls: ['./remote-canvas.component.css']
+    selector: 'app-remote-canvas',
+    templateUrl: './remote-canvas.component.html',
+    styleUrls: ['./remote-canvas.component.css'],
+    standalone: true,
+    imports: [FormsModule, JsonPipe]
 })
 export class RemoteCanvasComponent implements AfterViewInit, OnDestroy {
   @ViewChild('canvas', { static: false }) canvasRef?: ElementRef;

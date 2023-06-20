@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgFor, JsonPipe } from '@angular/common';
+import { TypeValidatorDirective } from '../../lib/my-core/directives/validadores/mis-validaciones.directive';
 
 export function equalToValidator(origen: string, destino: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -11,9 +13,11 @@ export function equalToValidator(origen: string, destino: string): ValidatorFn {
 
 
 @Component({
-  selector: 'app-formulario-rx',
-  templateUrl: './formulario-rx.component.html',
-  styleUrls: ['../formulario-t/formulario-t.component.css']
+    selector: 'app-formulario-rx',
+    templateUrl: './formulario-rx.component.html',
+    styleUrls: ['../formulario-t/formulario-t.component.css'],
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, TypeValidatorDirective, NgFor, JsonPipe]
 })
 export class FormularioRxComponent {
   miForm: FormGroup

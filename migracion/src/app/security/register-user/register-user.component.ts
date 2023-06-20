@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormArray, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray, ValidatorFn, AbstractControl, ValidationErrors, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { User, RegisterUserDAO, LoginService } from '../security.service';
 import { Router } from '@angular/router';
 import { NotificationService, NotificationType } from 'src/app/common-services';
 import { ErrorMessagePipe, LoggerService } from '@my/core';
+import { NgFor, JsonPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-register-user',
-  templateUrl: './register-user.component.html',
-  styleUrls: ['./register-user.component.css']
+    selector: 'app-register-user',
+    templateUrl: './register-user.component.html',
+    styleUrls: ['./register-user.component.css'],
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, NgFor, JsonPipe]
 })
 export class RegisterUserComponent implements OnInit {
   public miForm: FormGroup = new FormGroup({});

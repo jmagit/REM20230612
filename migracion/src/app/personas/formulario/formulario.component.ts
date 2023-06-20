@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NIFValidator } from 'src/lib/my-core/directives/validadores/mis-validaciones.directive';
+import { ErrorMessagePipe } from '../../../lib/my-core/pipes/cadenas.pipe';
+import { JsonPipe } from '@angular/common';
+import { TypeValidatorDirective } from '../../../lib/my-core/directives/validadores/mis-validaciones.directive';
 
 @Component({
-  selector: 'app-formulario',
-  templateUrl: './formulario.component.html',
-  styleUrls: ['./formulario.component.css']
+    selector: 'app-formulario',
+    templateUrl: './formulario.component.html',
+    styleUrls: ['./formulario.component.css'],
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, TypeValidatorDirective, JsonPipe, ErrorMessagePipe]
 })
 export class FormularioComponent {
   elemento: any = { id: 0, nombre: '', apellidos: '', correo: '', nif: '', edad: 0, fecha: '', conflictivo: false }

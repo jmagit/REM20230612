@@ -10,14 +10,14 @@ import { RouterModule } from '@angular/router';
 
 
 @NgModule({
-  declarations: [ ChatComponent, RemoteCanvasComponent, DashboardComponent, ScrollIntoViewDirective ],
-  exports: [ ChatComponent, RemoteCanvasComponent, DashboardComponent, RouterModule ],
-  imports: [
-    CommonModule, FormsModule, ChartModule, CardModule, RouterModule.forChild([
-      { path: 'chat', component: ChatComponent, data: { pageTitle: 'Chat' } },
-      { path: 'canvas', component: RemoteCanvasComponent, title: 'Canvas' },
-      { path: 'dashboard', component: DashboardComponent, title: 'Dashboard' },
-    ])
-  ]
+    exports: [ChatComponent, RemoteCanvasComponent, DashboardComponent, RouterModule],
+    imports: [
+        CommonModule, FormsModule, ChartModule, CardModule, RouterModule.forChild([
+            { path: 'chat', component: ChatComponent, data: { pageTitle: 'Chat' } },
+            { path: 'canvas', component: RemoteCanvasComponent, title: 'Canvas' },
+            { path: 'dashboard', component: DashboardComponent, title: 'Dashboard' },
+        ]),
+        ChatComponent, RemoteCanvasComponent, DashboardComponent, ScrollIntoViewDirective
+    ]
 })
 export class WebSocketModule { }

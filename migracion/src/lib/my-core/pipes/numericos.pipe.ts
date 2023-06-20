@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'toComaDecimal'
+    name: 'toComaDecimal',
+    standalone: true
 })
 export class ToComaDecimalPipe implements PipeTransform {
   transform(value: number | string): string {

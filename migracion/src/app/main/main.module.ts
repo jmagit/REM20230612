@@ -11,15 +11,13 @@ import { SecurityModule } from '../security';
 
 
 @NgModule({
-  declarations: [
-    NotificationComponent, NotificationModalComponent, HomeComponent, AjaxWaitComponent, HeaderComponent, PageNotFoundComponent,
-  ],
-  exports: [
-    NotificationComponent, NotificationModalComponent, HomeComponent, AjaxWaitComponent, HeaderComponent, PageNotFoundComponent,
-  ],
-  imports: [
-    CommonModule, SecurityModule, RouterModule.forChild([]),
-  ]
+    exports: [
+        NotificationComponent, NotificationModalComponent, HomeComponent, AjaxWaitComponent, HeaderComponent, PageNotFoundComponent,
+    ],
+    imports: [
+        CommonModule, SecurityModule, RouterModule.forChild([]),
+        NotificationComponent, NotificationModalComponent, HomeComponent, AjaxWaitComponent, HeaderComponent, PageNotFoundComponent,
+    ]
 })
 export class MainModule {
   constructor( @Optional() @SkipSelf() parentModule: MainModule) {

@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'elipsis'
+    name: 'elipsis',
+    standalone: true
 })
 export class ElipsisPipe implements PipeTransform {
   transform(value: any, maxlen: number): any {
@@ -10,7 +11,8 @@ export class ElipsisPipe implements PipeTransform {
 }
 
 @Pipe({
-  name: 'capitalize'
+    name: 'capitalize',
+    standalone: true
 })
 export class CapitalizePipe implements PipeTransform {
   transform(value: string): any {
@@ -21,7 +23,10 @@ export class CapitalizePipe implements PipeTransform {
     // return value?.charAt(0)?.toUpperCase() + value?.substring(1)?.toLowerCase();
   }
 }
-@Pipe({name: 'striptags'})
+@Pipe({
+    name: 'striptags',
+    standalone: true
+})
 export class StripTagsPipe implements PipeTransform {
 
   transform(text: string, ...allowedTags: string[]): string {
@@ -33,7 +38,8 @@ export class StripTagsPipe implements PipeTransform {
 }
 
 @Pipe({
-  name: 'errormsg'
+    name: 'errormsg',
+    standalone: true
 })
 export class ErrorMessagePipe implements PipeTransform {
   transform(value: any): string {

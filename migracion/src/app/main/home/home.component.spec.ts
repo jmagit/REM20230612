@@ -14,11 +14,10 @@ describe('HomeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent],
-      providers: [NotificationService, LoggerService],
-      imports: [HttpClientTestingModule, RouterTestingModule, FormsModule, MyCoreModule],
-      schemas: [NO_ERRORS_SCHEMA]
-    });
+    providers: [NotificationService, LoggerService],
+    imports: [HttpClientTestingModule, RouterTestingModule, FormsModule, MyCoreModule, HomeComponent],
+    schemas: [NO_ERRORS_SCHEMA]
+});
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

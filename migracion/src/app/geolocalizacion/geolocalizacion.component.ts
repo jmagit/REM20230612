@@ -1,10 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
+import { JsonPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-geolocalizacion',
-  templateUrl: './geolocalizacion.component.html',
-  styleUrls: ['./geolocalizacion.component.css']
+    selector: 'app-geolocalizacion',
+    templateUrl: './geolocalizacion.component.html',
+    styleUrls: ['./geolocalizacion.component.css'],
+    standalone: true,
+    imports: [JsonPipe]
 })
 export class GeolocalizacionComponent implements OnInit, OnDestroy {
   publisher$ = new Observable(observer => {

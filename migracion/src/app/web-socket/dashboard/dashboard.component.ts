@@ -1,6 +1,9 @@
 import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { WebSocketService } from '../web-socket.services';
+import { ChartModule } from 'primeng/chart';
+import { CardModule } from 'primeng/card';
+import { NgFor } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +15,11 @@ export class DashboardWebSocketService extends WebSocketService {
 }
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.css'],
+    standalone: true,
+    imports: [NgFor, CardModule, ChartModule]
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   simple: any;
