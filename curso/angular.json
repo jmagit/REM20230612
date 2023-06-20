@@ -5,7 +5,7 @@
   "projects": {
     "curso": {
       "projectType": "application",
-      "schematics": { },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -77,11 +77,15 @@
               "namedChunks": true
             },
             "en": {
-              "localize": [ "en" ],
-              "fileReplacements": [ {
+              "localize": [
+                "en"
+              ],
+              "fileReplacements": [
+                {
                   "replace": "src/locale/messages.ts",
                   "with": "src/locale/messages.en.ts"
-                } ]
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -125,10 +129,24 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [ ]
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

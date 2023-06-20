@@ -1,4 +1,5 @@
-import { Directive, ElementRef, forwardRef, Input } from '@angular/core';
+/* eslint-disable @angular-eslint/directive-selector */
+import { Directive, Input } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
 
 export interface Comparator<T> {
@@ -9,8 +10,8 @@ const hoy = () => (new Date()).toISOString().substring(0, 10)
 export function DateValidation(limite: string, compara: Comparator<number>): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     if (!control.value) { return null; }
-    let fechaLimite = (new Date(limite)).valueOf();
-    let fechaIntroducida = (new Date(control.value)).valueOf();
+    const fechaLimite = (new Date(limite)).valueOf();
+    const fechaIntroducida = (new Date(control.value)).valueOf();
     if (isNaN(fechaLimite))
       throw new Error('No es una fecha correcta')
     return !isNaN(fechaIntroducida) && compara(fechaIntroducida, fechaLimite) ? null : { date: `Invalid date` }

@@ -6,6 +6,7 @@ export class UnlessDirective {
   private hasView = false;
 
   constructor(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef) { }
 

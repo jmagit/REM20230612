@@ -42,7 +42,7 @@ export class ShowErrorsDirective implements OnChanges {
   @HostBinding('textContent') mensaje: string = '';
   @HostBinding('hidden') hidden: boolean = false;
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(_changes: SimpleChanges): void {
     if (!this.errors) {
       this.hidden = true;
       return;
