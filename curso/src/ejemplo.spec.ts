@@ -2,8 +2,35 @@ function ConError(param?: any) {
   if(param) return param;
   throw new Error('Esto a fallado')
 }
+export class Calculadora {
+  suma(a: number, b: number) {
+    return a + b
+  }
+  mensaje(msg: string) {
+    console.log(msg)
+  }
+}
+xdescribe('Primer ejemplo', () => {
+  describe('Dobles de pruebas', () => {
+    let calc: Calculadora;
+    beforeEach(() => {
+      calc = new Calculadora();
+    })
+    it('Real', () => {
+      expect(calc.suma(2, 1)).toBe(3)
+    })
+    it('Mock', () => {
+      spyOn(calc, 'suma').and.returnValue(2)
+      expect(calc.suma(2, 4)).toBe(2)
+    })
+    it('Mock consola', () => {
+      spyOn(console, 'log').and.stub()
+      const msg = 'hola mundo'
+      calc.mensaje(msg)
+      expect(console.log).toHaveBeenCalledWith(msg)
+    })
+  })
 
-fdescribe('Primer ejemplo', () => {
   describe('Errores', () => {
     describe('OK', () => {
       [
@@ -25,6 +52,10 @@ fdescribe('Primer ejemplo', () => {
   })
 
   describe('Escenario 1', () => {
+    beforeEach(function() {
+      jasmine.clock().install();
+   });
+
     describe('Escenario 1.1', () => {
       it('Siempre funciona', () => {
         expect(false).toBeTrue()
@@ -32,12 +63,15 @@ fdescribe('Primer ejemplo', () => {
       })
     })
     it('Pendiente')
-    fit('asincrono', done => {
+    it('asincrono', done => {
       setTimeout(() => {
         expect(true).toBeTrue()
         done()
       }, 1000)
-    }, 5000)
+      jasmine.clock().tick(1000)
+      jasmine.clock().mockDate(new Date(2001,1,1))
+      expect((new Date()).toLocaleDateString()).toBe('1/2/2001')
+    }, 500)
   })
   describe('Escenario 2', () => {
     describe('OK', () => {
