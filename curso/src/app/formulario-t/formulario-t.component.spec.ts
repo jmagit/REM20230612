@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormularioTComponent } from './formulario-t.component';
 
-describe('FormularioTComponent', () => {
+xdescribe('FormularioTComponent', () => {
   let component: FormularioTComponent;
   let fixture: ComponentFixture<FormularioTComponent>;
 

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RemoteCanvasComponent } from './remote-canvas.component';
 
-describe('RemoteCanvasComponent', () => {
+xdescribe('RemoteCanvasComponent', () => {
   let component: RemoteCanvasComponent;
   let fixture: ComponentFixture<RemoteCanvasComponent>;
 

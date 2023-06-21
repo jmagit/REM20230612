@@ -2,7 +2,7 @@ import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 
 export const ERROR_LEVEL = new InjectionToken<string>('ERROR_LEVEL')
 
-/*
+/**
  * Encapsula la consola del navegador
  */
 @Injectable()

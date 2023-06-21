@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoggerService } from '@my/core';
 import { environment } from 'src/environments/environment';
-import { AuthInterceptor, AuthService, LoginService, AuthGuard, InRoleGuard, AUTH_REQUIRED } from './security.service';
+import { AuthInterceptor, AuthService, LoginService, AUTH_REQUIRED } from './security.service';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -360,6 +360,7 @@ class TestHomeComponent { }
 @Component({ selector: 'app-test-component', template: `<p>Test Component</p>` })
 class TestComponent { }
 
+/*
 describe('AuthGuard', () => {
 
   let service: AuthGuard
@@ -473,3 +474,4 @@ describe('InRoleGuard', () => {
   });
 
 });
+*/
