@@ -1,5 +1,5 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ERROR_LEVEL, LoggerService } from '@my/core';
 import { NotificationService, NotificationType } from '../common-services';
@@ -264,5 +264,26 @@ describe('CalculadoraComponent', () => {
     expect(notify.add).toHaveBeenCalled();
     expect(notify.add).toHaveBeenCalledWith('Ya está la coma', NotificationType.warn)
   });
+
+  describe('Eventos de teclado', () => {
+    it('teclado', () => {
+      spyOn(console, 'log').and.stub()
+      const pantalla: HTMLElement = fixture.debugElement.query(By.css('.Pantalla')).nativeElement;
+      const contenedor = fixture.debugElement.query(By.css('.Calculadora'));
+      contenedor.triggerEventHandler('keydown', { key: '9' });
+      fixture.detectChanges()
+      expect(component.Pantalla).toBe('9')
+      contenedor.triggerEventHandler('keydown', { key: '.' });
+      fixture.detectChanges()
+      expect(component.Pantalla).toBe('9.')
+      contenedor.triggerEventHandler('keydown', { key: 'backspace' });
+      fixture.detectChanges()
+      expect(component.Pantalla).toBe('9')
+      contenedor.triggerEventHandler('keydown', { key: 'c' });
+      fixture.detectChanges()
+      expect(component.Pantalla).toBe('0')
+    });
+
+  })
 
 });

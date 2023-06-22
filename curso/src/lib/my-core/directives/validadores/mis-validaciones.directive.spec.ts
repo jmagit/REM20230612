@@ -30,6 +30,7 @@ describe('NIFValidator', () => {
     expect(directive.validate(control)).toBeNull();
   })
 });
+
 @Component({
   template: `<input type="text" [(ngModel)]="valor" #myInput="ngModel" nif >`
 })

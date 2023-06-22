@@ -10,20 +10,6 @@ describe('NotificationService', () => {
   let service: NotificationService;
   let log: LoggerService;
 
-  describe('Integración', () => {
-    beforeEach(() => {
-      TestBed.configureTestingModule({
-        providers: [LoggerService],
-      });
-      service = TestBed.inject(NotificationService);
-      log = TestBed.inject(LoggerService);
-      spyOn(log, 'error');
-    });
-
-    it('should be created', () => {
-      expect(service).toBeTruthy();
-    });
-  })
   describe('Aislada', () => {
     beforeEach(() => {
       log = new LoggerService(0);
@@ -81,6 +67,21 @@ describe('NotificationService', () => {
       expect(service.Listado.length).toBe(2);
       service.clear()
       expect(service.HayNotificaciones).toBeFalsy();
+    });
+  })
+
+  describe('Integración', () => {
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        providers: [LoggerService],
+      });
+      service = TestBed.inject(NotificationService);
+      log = TestBed.inject(LoggerService);
+      spyOn(log, 'error');
+    });
+
+    it('should be created', () => {
+      expect(service).toBeTruthy();
     });
   })
 });
