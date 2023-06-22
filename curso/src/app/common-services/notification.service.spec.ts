@@ -14,60 +14,76 @@ describe('NotificationService', () => {
     beforeEach(() => {
       log = new LoggerService(0);
       service = new NotificationService(log);
-      spyOn(log, 'error');
+      spyOn(log, 'error').and.stub();
     });
 
-    it('add message: error', (done: DoneFn) => {
-      service.Notificacion.subscribe(
-        {
+    describe('OK', () => {
+      it('add message: error', (done: DoneFn) => {
+        service.Notificacion.subscribe(
+          {
+            next: data => { expect(data.Message).toBe(message); done(); },
+            error: () => fail()
+          }
+        );
+        service.add(message)
+        expect(service.HayNotificaciones).toBeTruthy();
+        expect(service.Listado.length).toBe(1);
+        expect(service.Listado[0].Id).toBe(1);
+        expect(service.Listado[0].Message).toBe(message);
+        expect(service.Listado[0].Type).toBe(NotificationType.error);
+        expect(log.error).toHaveBeenCalled();
+        expect(log.error).toHaveBeenCalledWith(`NOTIFICATION: ${message}`)
+      });
+
+      it('add message: warn', (done: DoneFn) => {
+        service.Notificacion.subscribe({
           next: data => { expect(data.Message).toBe(message); done(); },
           error: () => fail()
-        }
-      );
-      service.add(message)
-      expect(service.HayNotificaciones).toBeTruthy();
-      expect(service.Listado.length).toBe(1);
-      expect(service.Listado[0].Id).toBe(1);
-      expect(service.Listado[0].Message).toBe(message);
-      expect(service.Listado[0].Type).toBe(NotificationType.error);
-      expect(log.error).toHaveBeenCalled();
-      expect(log.error).toHaveBeenCalledWith(`NOTIFICATION: ${message}`)
-    });
-
-    it('add message: warn', (done: DoneFn) => {
-      service.Notificacion.subscribe({
-        next: data => { expect(data.Message).toBe(message); done(); },
-        error: () => fail()
+        });
+        service.add(message, NotificationType.warn)
+        expect(service.HayNotificaciones).toBeTruthy();
+        expect(service.Listado.length).toBe(1);
+        expect(service.Listado[0].Id).toBe(1);
+        expect(service.Listado[0].Message).toBe(message);
+        expect(service.Listado[0].Type).toBe(NotificationType.warn);
+        expect(log.error).not.toHaveBeenCalled();
       });
-      service.add(message, NotificationType.warn)
-      expect(service.HayNotificaciones).toBeTruthy();
-      expect(service.Listado.length).toBe(1);
-      expect(service.Listado[0].Id).toBe(1);
-      expect(service.Listado[0].Message).toBe(message);
-      expect(service.Listado[0].Type).toBe(NotificationType.warn);
-      expect(log.error).not.toHaveBeenCalled();
-    });
 
-    it('remove message', () => {
-      service.add(message)
-      service.add(message2)
-      expect(service.HayNotificaciones).toBeTruthy();
-      expect(service.Listado.length).toBe(2);
-      service.remove(0)
-      expect(service.Listado.length).toBe(1);
-      expect(service.Listado[0].Id).toBe(2);
-      service.remove(0)
-      expect(service.HayNotificaciones).toBeFalsy();
-    });
+      it('remove message', () => {
+        service.add(message)
+        service.add(message2)
+        expect(service.HayNotificaciones).toBeTruthy();
+        expect(service.Listado.length).toBe(2);
+        service.remove(0)
+        expect(service.Listado.length).toBe(1);
+        expect(service.Listado[0].Id).toBe(2);
+        service.remove(0)
+        expect(service.HayNotificaciones).toBeFalsy();
+      });
 
-    it('clear messages', () => {
-      service.add(message)
-      service.add(message2)
-      expect(service.HayNotificaciones).toBeTruthy();
-      expect(service.Listado.length).toBe(2);
-      service.clear()
-      expect(service.HayNotificaciones).toBeFalsy();
-    });
+      it('clear messages', () => {
+        service.add(message)
+        service.add(message2)
+        expect(service.HayNotificaciones).toBeTruthy();
+        expect(service.Listado.length).toBe(2);
+        service.clear()
+        expect(service.HayNotificaciones).toBeFalsy();
+      });
+
+    })
+    describe('KO', () => {
+      it('add message: sin mensaje', () => {
+        service.add('')
+        expect(log.error).toHaveBeenCalled();
+        expect(log.error).toHaveBeenCalledWith('Falta el mensaje de notificación.')
+      });
+      it('remove: fuera de rango', () => {
+        service.remove(1)
+        expect(log.error).toHaveBeenCalled();
+        expect(log.error).toHaveBeenCalledWith('Index out of range.')
+      });
+
+    })
   })
 
   describe('Integración', () => {
