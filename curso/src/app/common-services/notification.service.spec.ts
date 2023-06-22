@@ -4,7 +4,7 @@ import { NotificationType } from '.';
 
 import { NotificationService } from './notification.service';
 
-fdescribe('NotificationService', () => {
+describe('NotificationService', () => {
   const message = 'Notificación al usuario'
   const message2 = 'Notificación al usuario (2)'
   let service: NotificationService;

@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild, UrlTree, CanLoad, Route, UrlSegment, Data, CanActivateFn, CanActivateChildFn, CanLoadFn, CanMatchFn } from '@angular/router';
+import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Route, UrlSegment, Data, CanActivateFn, CanActivateChildFn, CanMatchFn } from '@angular/router';
 import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpContextToken } from '@angular/common/http';
 import { BehaviorSubject, catchError, filter, Observable, of, pipe, switchMap, take, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
