@@ -12,7 +12,7 @@ export function svgFiles(url: UrlSegment[]) {
   return url.length === 1 && url[0].path.endsWith('.svg') ? ({consumed: url}) : null;
 }
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
   { path: 'inicio', component: HomeComponent },
   { path: 'demos', component: DemosComponent, title: 'Demos' },
