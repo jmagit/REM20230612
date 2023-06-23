@@ -43,8 +43,8 @@
     <label class="form-check-label" for="conflictivo">Conflictivo</label>
   </div>
   <div>
-    <button type="button" (click)="send()" [disabled]="miForm.invalid">Enviar</button>
-    <button type="button" (click)="cancel()">Volver</button>
+    <button data-testid="enviar" type="button" (click)="send()" [disabled]="miForm.invalid">Enviar</button>
+    <button data-testid="volver"  type="button" (click)="cancel()">Volver</button>
   </div>
 </form>
 <p>{{ miForm.value | json }}</p>
