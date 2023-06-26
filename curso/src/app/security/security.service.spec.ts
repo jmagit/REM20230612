@@ -1,6 +1,6 @@
 import { HttpClient, HttpContext, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Component, Injector } from '@angular/core';
+import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { inject, TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
@@ -383,6 +383,14 @@ describe('AuthCanActivateFn', () => {
     router = TestBed.inject(Router);
     auth = TestBed.inject(AuthService);
     location = TestBed.inject(Location)
+  });
+  it('canActivateFn', async () => {
+    auth.login('token', 'refresh', 'usuario', [])
+    TestBed.runInInjectionContext(() => expect(AuthCanActivateFn({} as ActivatedRouteSnapshot,{} as RouterStateSnapshot)).toBeTruthy())
+  });
+  it('not canActivateFn', async () => {
+    auth.logout()
+    TestBed.runInInjectionContext(() => expect(AuthCanActivateFn({} as ActivatedRouteSnapshot,{} as RouterStateSnapshot)).toBeFalsy())
   });
 
   it('canActivate', async () => {

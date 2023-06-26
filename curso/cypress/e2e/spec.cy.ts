@@ -25,21 +25,23 @@ describe('My First Test', () => {
         it(`Visita ${ruta}`, () => {
           cy.visit(`/${ruta}`)
           cy.url().should('contain', ruta)
+          cy.get('.navbar-toggler').should('be.hidden')
         })
       })
   })
-  describe('Formulario', () => {
-    it.only(`Visita`, () => {
+  describe.only('Formulario', () => {
+    it(`Visita`, () => {
       let cad = 'Hola'
       cy.viewport('samsung-s10', 'portrait')
       cy.visit('/form')
+      cy.get('.navbar-toggler').should('be.visible')
       cy.get('#username').clear().type('kk')
       cy.get('.btn-primary').click()
       cy.get('.alert').should('contain', 'Acceso denegado')
-      cy.screenshot()
+      // cy.screenshot()
       cy.get('#username').clear().type('adm@example.com')
       cy.get('.btn-primary').click()
-      cy.screenshot()
+      // cy.screenshot()
       cy.get(':nth-child(3) > .error').should('have.text', 'Es obligatorio.')
       cy.get('#nombre').type(cad).blur().then(ele => {
         cad = ele.text().toUpperCase()
@@ -51,5 +53,18 @@ describe('My First Test', () => {
       cy.get('#conflictivo').check()
       cy.get('[data-testid=volver]').click()
     })
+  })
+  describe('Responsive', () => {
+    ['macbook-16', /*'macbook-15', 'macbook-13', 'macbook-11',*/ 'ipad-2', 'ipad-mini', 'iphone-xr', 'iphone-x', 'iphone-6+', 'iphone-se2', 'iphone-8', 'iphone-7', 'iphone-6', 'iphone-5', 'iphone-4', 'iphone-3', 'samsung-s10', 'samsung-note9']
+      .forEach(dispositivo => {
+        ['landscape', 'portrait'].forEach(orientacion => {
+          it(`Dispositivo: ${dispositivo} ${orientacion}`, { screenshotOnRunFailure: true }, () => {
+            cy.viewport(dispositivo as Cypress.ViewportPreset, orientacion as Cypress.ViewportOrientation)
+            cy.visit('/')
+            cy.get('.navbar-toggler', { timeout: 0 }).should('be.visible').click()
+            cy.get(':nth-child(1) > .nav-link', { timeout: 0 }).click()
+          })
+        })
+      })
   })
 })

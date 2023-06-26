@@ -12,6 +12,7 @@ export class BaseComponent {
   logInOut() {
     if (this.loginSrv.isAutenticated) {
       this.loginSrv.logout();
+      this.reloadPage()
     } else {
       this.loginSrv.login(this.txtUsuario, this.txtPassword).subscribe({
         next: data => {
@@ -39,7 +40,7 @@ export class BaseComponent {
   }
 
   reloadPage(): void {
-    window.location.reload();
+    this.router.navigateByUrl(this.router.url, {onSameUrlNavigation: 'reload'})
   }
 }
 
